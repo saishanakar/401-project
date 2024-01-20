@@ -1,0 +1,64 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+    <form id="loginForm" action="/login" method="post">
+        <div class="sai">
+            <h2 id="h">Login Form</h2>
+            <label for="email">Enter the email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="password">Enter the password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Login" id="loginButton" class="sub" onclick="submitLoginForm()"><br><br>
+        </div>
+        <div class="div2">
+            <h1>New Here?</h1>
+            <p>SignUp and Savour the taste!</p>
+            <button type="button" id="signupButton" onclick="window.location.href='signup.html'">SignUp</button>
+        </div>
+    </form>
+    <script>
+        function submitLoginForm() {
+            // Assuming you are using Fetch API for the login request
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message); // Show success message
+                        // Redirect or perform other actions for successful login
+                    } else {
+                        alert(data.message); // Show error message
+                        // Handle unsuccessful login
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle other errors
+                });
+        }
+            // Check for the 'error' query parameter in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorParam = urlParams.get('error');
+            // Display alert message if 'error' parameter is present
+            if (errorParam === 'InvalidCredentials') {
+                alert('Invalid credentials. Please try again.');
+            }
+    </script>
+</body>
+</html>
