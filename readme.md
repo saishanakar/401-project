@@ -1,29 +1,41 @@
-# saslprep
+# binary-extensions
 
-_Note: This is a fork of the original [`saslprep`](https://www.npmjs.com/package/saslprep) npm package
-and provides equivalent functionality._
+> List of binary file extensions
 
-Stringprep Profile for User Names and Passwords, [rfc4013](https://tools.ietf.org/html/rfc4013)
+The list is just a [JSON file](binary-extensions.json) and can be used anywhere.
 
-### Usage
 
-```js
-const saslprep = require('@mongodb-js/saslprep');
+## Install
 
-saslprep('password\u00AD'); // password
-saslprep('password\u0007'); // Error: prohibited character
+```
+$ npm install binary-extensions
 ```
 
-### API
 
-##### `saslprep(input: String, opts: Options): String`
+## Usage
 
-Normalize user name or password.
+```js
+const binaryExtensions = require('binary-extensions');
 
-##### `Options.allowUnassigned: bool`
+console.log(binaryExtensions);
+//=> ['3ds', '3g2', …]
+```
 
-A special behavior for unassigned code points, see https://tools.ietf.org/html/rfc4013#section-2.5. Disabled by default.
 
-## License
+## Related
 
-MIT, 2017-2019 (c) Dmitriy Tsvettsikh
+- [is-binary-path](https://github.com/sindresorhus/is-binary-path) - Check if a filepath is a binary file
+- [text-extensions](https://github.com/sindresorhus/text-extensions) - List of text file extensions
+
+
+---
+
+<div align="center">
+	<b>
+		<a href="https://tidelift.com/subscription/pkg/npm-binary-extensions?utm_source=npm-binary-extensions&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
+	</b>
+	<br>
+	<sub>
+		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
+	</sub>
+</div>

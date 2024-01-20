@@ -1,87 +1,42 @@
 {
-  "name": "@mongodb-js/saslprep",
-  "description": "SASLprep: Stringprep Profile for User Names and Passwords, rfc4013",
-  "keywords": [
-    "sasl",
-    "saslprep",
-    "stringprep",
-    "rfc4013",
-    "4013"
-  ],
-  "author": "Dmitry Tsvettsikh <me@reklatsmasters.com>",
-  "publishConfig": {
-    "access": "public"
-  },
-  "main": "dist/node.js",
-  "bugs": {
-    "url": "https://jira.mongodb.org/projects/COMPASS/issues",
-    "email": "compass@mongodb.com"
-  },
-  "homepage": "https://github.com/mongodb-js/devtools-shared/tree/main/packages/saslprep",
-  "version": "1.1.4",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mongodb-js/devtools-shared.git"
-  },
-  "files": [
-    "dist"
+  "name": "bytes",
+  "description": "Utility to parse a string bytes to bytes and vice-versa",
+  "version": "3.1.2",
+  "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
+  "contributors": [
+    "Jed Watson <jed.watson@me.com>",
+    "Théo FIDRY <theo.fidry@gmail.com>"
   ],
   "license": "MIT",
-  "exports": {
-    "browser": {
-      "types": "./dist/browser.d.ts",
-      "default": "./dist/browser.js"
-    },
-    "import": {
-      "types": "./dist/node.d.ts",
-      "default": "./dist/.esm-wrapper.mjs"
-    },
-    "require": {
-      "types": "./dist/node.d.ts",
-      "default": "./dist/node.js"
-    }
-  },
-  "types": "./dist/node.d.ts",
-  "scripts": {
-    "gen-code-points": "ts-node src/generate-code-points.ts src/code-points-data.ts src/code-points-data-browser.ts",
-    "bootstrap": "npm run compile",
-    "prepublishOnly": "npm run compile",
-    "compile": "npm run gen-code-points && tsc -p tsconfig.json && gen-esm-wrapper . ./dist/.esm-wrapper.mjs",
-    "typecheck": "tsc --noEmit",
-    "eslint": "eslint",
-    "prettier": "prettier",
-    "lint": "npm run eslint . && npm run prettier -- --check .",
-    "depcheck": "depcheck",
-    "check": "npm run typecheck && npm run lint && npm run depcheck",
-    "check-ci": "npm run check",
-    "test": "mocha",
-    "test-cov": "nyc -x \"**/*.spec.*\" --reporter=lcov --reporter=text --reporter=html npm run test",
-    "test-watch": "npm run test -- --watch",
-    "test-ci": "npm run test-cov",
-    "reformat": "npm run prettier -- --write ."
-  },
-  "dependencies": {
-    "sparse-bitfield": "^3.0.3"
-  },
+  "keywords": [
+    "byte",
+    "bytes",
+    "utility",
+    "parse",
+    "parser",
+    "convert",
+    "converter"
+  ],
+  "repository": "visionmedia/bytes.js",
   "devDependencies": {
-    "@mongodb-js/eslint-config-devtools": "0.9.10",
-    "@mongodb-js/mocha-config-devtools": "^1.0.3",
-    "@mongodb-js/prettier-config-devtools": "^1.0.1",
-    "@mongodb-js/tsconfig-devtools": "^1.0.1",
-    "@types/chai": "^4.2.21",
-    "@types/mocha": "^9.0.0",
-    "@types/node": "^17.0.35",
-    "@types/sinon-chai": "^3.2.5",
-    "@types/sparse-bitfield": "^3.0.1",
-    "chai": "^4.3.6",
-    "depcheck": "^1.4.1",
-    "eslint": "^7.25.0",
-    "gen-esm-wrapper": "^1.1.0",
-    "mocha": "^8.4.0",
-    "nyc": "^15.1.0",
-    "prettier": "^2.3.2",
-    "sinon": "^9.2.3",
-    "typescript": "^5.0.4"
+    "eslint": "7.32.0",
+    "eslint-plugin-markdown": "2.2.1",
+    "mocha": "9.2.0",
+    "nyc": "15.1.0"
   },
-  "gitHead": "26be0804d454bf804ac817038b6d9a573cc6ce5d"
+  "files": [
+    "History.md",
+    "LICENSE",
+    "Readme.md",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 0.8"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha --check-leaks --reporter spec",
+    "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+    "test-cov": "nyc --reporter=html --reporter=text npm test"
+  }
 }
